@@ -1,0 +1,61 @@
+{
+	"name": "transformation",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "date"
+				},
+				{
+					"dataset": {
+						"referenceName": "region",
+						"type": "DatasetReference"
+					},
+					"name": "region"
+				},
+				{
+					"dataset": {
+						"referenceName": "wheatherme",
+						"type": "DatasetReference"
+					},
+					"name": "wheatherme"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          DateID as string,",
+				"          Date as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> date",
+				"source(output(",
+				"          RegionID as string,",
+				"          RegionName as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> region",
+				"source(output(",
+				"          DateID as string,",
+				"          RegionID as string,",
+				"          AverageTemperature as string,",
+				"          Humidity as string,",
+				"          WindSpeed as string,",
+				"          Rainfall as string,",
+				"          SunshineHours as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> wheatherme"
+			]
+		}
+	}
+}

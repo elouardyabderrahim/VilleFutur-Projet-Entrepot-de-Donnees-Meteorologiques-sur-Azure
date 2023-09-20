@@ -1,0 +1,9 @@
+{
+	"name": "abderrahimfactory",
+	"location": "francecentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1cb7d90d-1f25-4b66-8e8e-272853fc231c",
+		"tenantId": "a2e466aa-4f86-4545-b5b8-97da7c8febf3"
+	}
+}

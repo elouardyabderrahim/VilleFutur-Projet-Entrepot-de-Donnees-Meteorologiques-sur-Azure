@@ -62,7 +62,11 @@
 					}
 				}
 			],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "devidedate"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          DateID as integer,",
@@ -90,7 +94,10 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> wheatherme",
-				"date sink(allowSchemaDrift: true,",
+				"date derive(year = year(Date),",
+				"          month = month(Date),",
+				"          day = dayOfMonth(Date)) ~> devidedate",
+				"devidedate sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          DateID as string,",

@@ -1,0 +1,53 @@
+{
+	"name": "wheatherfilelake",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStoragelake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "weathermetrics-6506f85ed6fa8029696523.csv",
+				"folderPath": "input",
+				"fileSystem": "elouardyfilesystem"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "DateID",
+				"type": "String"
+			},
+			{
+				"name": "RegionID",
+				"type": "String"
+			},
+			{
+				"name": "AverageTemperature",
+				"type": "String"
+			},
+			{
+				"name": "Humidity",
+				"type": "String"
+			},
+			{
+				"name": "WindSpeed",
+				"type": "String"
+			},
+			{
+				"name": "Rainfall",
+				"type": "String"
+			},
+			{
+				"name": "SunshineHours",
+				"type": "String"
+			}
+		]
+	}
+}

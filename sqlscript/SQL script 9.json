@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 9",
+	"properties": {
+		"content": {
+			"query": "DROP TABLE [dbo].[weatherFact]\nGO\n\nCREATE MASTER KEY ENCRYPTION BY PASSWORD = 'P@ssword2023';",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "abderahimpoolsql",
+				"poolName": "abderahimpoolsql"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,33 @@
+{
+	"name": "fromlakeregioninput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStoragelake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "cleanedregion",
+				"folderPath": "input",
+				"fileSystem": "elouardyfilesystem"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "RegionID",
+				"type": "String"
+			},
+			{
+				"name": "RegionName",
+				"type": "String"
+			}
+		]
+	}
+}

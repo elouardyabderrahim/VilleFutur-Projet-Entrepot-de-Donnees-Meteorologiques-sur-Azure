@@ -6,21 +6,21 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText1",
+						"referenceName": "fromlakeinputdate",
 						"type": "DatasetReference"
 					},
 					"name": "date"
 				},
 				{
 					"dataset": {
-						"referenceName": "region",
+						"referenceName": "fromlakeregioninput",
 						"type": "DatasetReference"
 					},
 					"name": "region"
 				},
 				{
 					"dataset": {
-						"referenceName": "wheatherme",
+						"referenceName": "frominputlakewheather",
 						"type": "DatasetReference"
 					},
 					"name": "wheatherme"
@@ -29,55 +29,42 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "cleaneddtae",
+						"referenceName": "AzureSynapseAnalyticsDate",
 						"type": "DatasetReference"
 					},
 					"name": "sinktransformationdate",
-					"description": "Export data to date cleaner",
-					"rejectedDataLinkedService": {
-						"referenceName": "outputstorage",
-						"type": "LinkedServiceReference"
-					}
+					"description": "Export data to date cleaner"
 				},
 				{
 					"dataset": {
-						"referenceName": "regioncleaned",
+						"referenceName": "AzureSynapseAnalyticsTableregion",
 						"type": "DatasetReference"
 					},
-					"name": "sinkfactoryregion",
-					"rejectedDataLinkedService": {
-						"referenceName": "outputstorage",
-						"type": "LinkedServiceReference"
-					}
+					"name": "sinkfactoryregion"
 				},
 				{
 					"dataset": {
-						"referenceName": "cleanedweather",
+						"referenceName": "AzureSynapseAnalyticsTablewheather",
 						"type": "DatasetReference"
 					},
-					"name": "sinkfactorywheather",
-					"rejectedDataLinkedService": {
-						"referenceName": "outputstorage",
-						"type": "LinkedServiceReference"
-					}
+					"name": "sinkfactorywheather"
 				}
 			],
-			"transformations": [
-				{
-					"name": "devidedate"
-				}
-			],
+			"transformations": [],
 			"scriptLines": [
 				"source(output(",
 				"          DateID as integer,",
-				"          Date as date 'yyyy-MM-dd'",
+				"          Date as date 'yyyy-MM-dd',",
+				"          year as integer,",
+				"          month as integer,",
+				"          day as integer",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> date",
 				"source(output(",
 				"          RegionID as integer,",
-				"          RegionName as integer",
+				"          RegionName as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
@@ -94,24 +81,39 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> wheatherme",
-				"date derive(year = year(Date),",
-				"          month = month(Date),",
-				"          day = dayOfMonth(Date)) ~> devidedate",
-				"devidedate sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     partitionFileNames:['cleaneddate'],",
+				"date sink(allowSchemaDrift: true,",
+				"     validateSchema: true,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sinktransformationdate",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinktransformationdate",
 				"region sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     partitionFileNames:['cleanedregion'],",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sinkfactoryregion",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkfactoryregion",
 				"wheatherme sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     partitionFileNames:['cleanedwheather'],",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sinkfactorywheather"
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkfactorywheather"
 			]
 		}
 	}

@@ -1,0 +1,33 @@
+{
+	"name": "regionfilelake",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStoragelake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "regiondim-6506f8ee8bc05295285113.csv",
+				"folderPath": "input",
+				"fileSystem": "elouardyfilesystem"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "RegionID",
+				"type": "String"
+			},
+			{
+				"name": "RegionName",
+				"type": "String"
+			}
+		]
+	}
+}

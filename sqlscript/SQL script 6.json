@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 6",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [DateID]\n,[Date]\n,[year]\n,[month]\n,[day]\n FROM [dbo].[datetable]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "abderahimpoolsql",
+				"poolName": "abderahimpoolsql"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

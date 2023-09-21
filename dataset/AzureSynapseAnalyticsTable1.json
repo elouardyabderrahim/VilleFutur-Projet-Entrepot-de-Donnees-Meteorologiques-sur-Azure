@@ -2,7 +2,7 @@
 	"name": "AzureSynapseAnalyticsTable1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSynapseAnalytics1",
+			"referenceName": "AzureSynapseAnalyticsdateinsert",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],

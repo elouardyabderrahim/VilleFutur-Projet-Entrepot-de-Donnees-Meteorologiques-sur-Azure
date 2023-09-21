@@ -10,7 +10,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "",
-			"table": "regiontable"
+			"table": "region"
 		}
 	}
 }

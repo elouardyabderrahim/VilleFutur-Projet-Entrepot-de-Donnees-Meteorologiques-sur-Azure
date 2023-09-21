@@ -26,24 +26,91 @@
 					"name": "wheatherme"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "sinktransformationdate",
+					"description": "Export data to date cleaner",
+					"rejectedDataLinkedService": {
+						"referenceName": "outputstorage",
+						"type": "LinkedServiceReference"
+					}
+				},
+				{
+					"dataset": {
+						"referenceName": "region",
+						"type": "DatasetReference"
+					},
+					"name": "sinkfactoryregion",
+					"rejectedDataLinkedService": {
+						"referenceName": "outputstorage",
+						"type": "LinkedServiceReference"
+					}
+				},
+				{
+					"dataset": {
+						"referenceName": "wheatherme",
+						"type": "DatasetReference"
+					},
+					"name": "sinkfactorywheather",
+					"rejectedDataLinkedService": {
+						"referenceName": "outputstorage",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
 			"transformations": [],
 			"scriptLines": [
 				"source(output(",
-				"          DateID as string,",
-				"          Date as string",
+				"          DateID as integer,",
+				"          Date as date 'yyyy-MM-dd'",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> date",
 				"source(output(",
-				"          RegionID as string,",
-				"          RegionName as string",
+				"          RegionID as integer,",
+				"          RegionName as integer",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> region",
 				"source(output(",
+				"          DateID as integer,",
+				"          RegionID as integer,",
+				"          AverageTemperature as integer,",
+				"          Humidity as integer,",
+				"          WindSpeed as integer,",
+				"          Rainfall as integer,",
+				"          SunshineHours as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> wheatherme",
+				"date sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          DateID as string,",
+				"          Date as string",
+				"     ),",
+				"     partitionFileNames:['cleaneddate'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinktransformationdate",
+				"region sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          RegionID as string,",
+				"          RegionName as string",
+				"     ),",
+				"     partitionFileNames:['cleanedregion'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkfactoryregion",
+				"wheatherme sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
 				"          DateID as string,",
 				"          RegionID as string,",
 				"          AverageTemperature as string,",
@@ -52,9 +119,9 @@
 				"          Rainfall as string,",
 				"          SunshineHours as string",
 				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> wheatherme"
+				"     partitionFileNames:['cleanedwheather'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkfactorywheather"
 			]
 		}
 	}

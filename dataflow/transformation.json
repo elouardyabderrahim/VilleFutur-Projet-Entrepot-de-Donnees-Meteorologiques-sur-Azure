@@ -29,7 +29,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText1",
+						"referenceName": "cleaneddtae",
 						"type": "DatasetReference"
 					},
 					"name": "sinktransformationdate",
@@ -41,7 +41,7 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "region",
+						"referenceName": "regioncleaned",
 						"type": "DatasetReference"
 					},
 					"name": "sinkfactoryregion",
@@ -52,7 +52,7 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "wheatherme",
+						"referenceName": "cleanedweather",
 						"type": "DatasetReference"
 					},
 					"name": "sinkfactorywheather",
@@ -99,33 +99,16 @@
 				"          day = dayOfMonth(Date)) ~> devidedate",
 				"devidedate sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          DateID as string,",
-				"          Date as string",
-				"     ),",
 				"     partitionFileNames:['cleaneddate'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sinktransformationdate",
 				"region sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          RegionID as string,",
-				"          RegionName as string",
-				"     ),",
 				"     partitionFileNames:['cleanedregion'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sinkfactoryregion",
 				"wheatherme sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          DateID as string,",
-				"          RegionID as string,",
-				"          AverageTemperature as string,",
-				"          Humidity as string,",
-				"          WindSpeed as string,",
-				"          Rainfall as string,",
-				"          SunshineHours as string",
-				"     ),",
 				"     partitionFileNames:['cleanedwheather'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sinkfactorywheather"

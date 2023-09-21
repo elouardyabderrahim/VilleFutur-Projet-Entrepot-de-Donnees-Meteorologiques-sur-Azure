@@ -1,20 +1,20 @@
 {
-	"name": "datepretre",
+	"name": "filedatetoinputsynapes",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "outputstorage",
+			"referenceName": "AzureDataLakeStoragelakefromfactory",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation",
-				"fileName": "cleaneddate",
-				"container": "outputcontainer"
+				"type": "AzureBlobFSLocation",
+				"folderPath": "input",
+				"fileSystem": "elouardyfilesystem"
 			},
 			"columnDelimiter": ",",
-			"escapeChar": "\"",
+			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
@@ -25,18 +25,6 @@
 			},
 			{
 				"name": "Date",
-				"type": "String"
-			},
-			{
-				"name": "year",
-				"type": "String"
-			},
-			{
-				"name": "month",
-				"type": "String"
-			},
-			{
-				"name": "day",
 				"type": "String"
 			}
 		]

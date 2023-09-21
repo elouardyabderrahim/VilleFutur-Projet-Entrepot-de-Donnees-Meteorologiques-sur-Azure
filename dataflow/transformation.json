@@ -77,7 +77,7 @@
 				"     ignoreNoFilesFound: false) ~> date",
 				"source(output(",
 				"          RegionID as integer,",
-				"          RegionName as integer",
+				"          RegionName as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",

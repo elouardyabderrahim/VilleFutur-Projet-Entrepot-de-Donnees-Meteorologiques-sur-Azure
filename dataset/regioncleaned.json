@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "cleanedregion",
 				"container": "outputcontainer"
 			},
 			"columnDelimiter": ",",

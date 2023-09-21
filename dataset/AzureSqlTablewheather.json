@@ -9,8 +9,8 @@
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "",
-			"table": "weathertable"
+			"schema": "dbo",
+			"table": "weather"
 		}
 	}
 }

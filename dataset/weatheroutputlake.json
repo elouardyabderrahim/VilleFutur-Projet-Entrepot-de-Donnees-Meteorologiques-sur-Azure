@@ -1,0 +1,23 @@
+{
+	"name": "weatheroutputlake",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStoragelake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "output",
+				"fileSystem": "elouardyfilesystem"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

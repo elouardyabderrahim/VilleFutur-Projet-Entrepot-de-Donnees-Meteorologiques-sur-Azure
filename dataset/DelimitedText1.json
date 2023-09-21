@@ -2,7 +2,7 @@
 	"name": "DelimitedText1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage1",
+			"referenceName": "storageinput",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "datedim-6506f8f25d26e398055394.csv",
-				"container": "aploadedcontainer"
+				"container": "inputcontainer"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

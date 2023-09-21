@@ -1,8 +1,8 @@
 {
-	"name": "DelimitedText1",
+	"name": "cleaneddtae",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "storageinput",
+			"referenceName": "outputstorage",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,23 +10,13 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "datedim-6506f8f25d26e398055394.csv",
-				"container": "inputcontainer"
+				"container": "outputcontainer"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "DateID",
-				"type": "String"
-			},
-			{
-				"name": "Date",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }

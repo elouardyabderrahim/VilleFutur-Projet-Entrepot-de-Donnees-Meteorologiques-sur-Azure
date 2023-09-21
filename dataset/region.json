@@ -2,7 +2,7 @@
 	"name": "region",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage1",
+			"referenceName": "storageinput",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "regiondim-6506f8ee8bc05295285113.csv",
-				"container": "aploadedcontainer"
+				"container": "inputcontainer"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
